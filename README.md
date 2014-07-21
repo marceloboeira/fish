@@ -1,4 +1,4 @@
-Vimia Query-API
+[Vimia](https://site.vimia.cc) Query-API
 =====
 
 The project consist on a Solid, Realiable API to Query Data that is used on several projects, such as:
@@ -32,7 +32,13 @@ Get another data input that could be here ? [Open an issue](https://github.com/v
 
 
 ### :coffee: From Developers for Developers
+	
 	The API will be coded to easily integrate several platforms.
+
+### :octocat: Contributors
+	
+	* Marcelo Boeira - Software Engineer & Creator
+	* Marvin Medeiros - Software / UX Engineer & Creator
 	
 
 
