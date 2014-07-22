@@ -4,22 +4,27 @@
 		* GetupCloud/Heroku
 		* Jenkins 
 		* Routine
+		* nginx
 
 * Core
 	* TDD (Mocha?)
+	* Local Variables
 	* Standard relations 
 		* 1:1
 		* 1:n
 		* n:n
 	* Test Database Adapters
+		* MongoDB
+		* MySQL
+		* PostGre
 	* Log 
 	* Relate Users to Tokens
 	* Mailer
 	* Services / CronStyle tasks... 
 	* Sessions
-	* Security
+	* Security (BluePrint Access)
 	* Controll access to resources - ACL ? RCL ? 
-
+	* Cache 
 
 * Front-end
 	* Hot-site
