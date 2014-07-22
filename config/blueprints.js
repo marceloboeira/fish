@@ -105,7 +105,7 @@ module.exports.blueprints = {
   // `DELETE /api/v2/foo/:id`
   //
   // By default, no prefix is used.
-  prefix: '',
+  prefix: '/api/v1/',
 
 
 
