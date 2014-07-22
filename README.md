@@ -1,5 +1,7 @@
-[Vimia](https://site.vimia.cc) Query-API
+[Vimia](https://site.vimia.cc) Query-API [![Build Status](https://travis-ci.org/vimia/query.svg?branch=master)] (https://travis-ci.org/vimia/query) [![Code Climate](https://codeclimate.com/github/vimia/query.png)](https://codeclimate.com/github/vimia/query) [![Test Coverage](https://codeclimate.com/github/vimia/query/coverage.png)](https://codeclimate.com/github/vimia/query)
 =====
+
+
 
 The project consist on a Solid, Realiable API to Query Data that is used on several projects, such as:
 
