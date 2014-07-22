@@ -9,14 +9,31 @@ module.exports = {
 
   attributes: {
   	name: {
-  		type: 'string'
+  		type: 'string',
+  		required: true,
+  		minLength: 3,
+  		maxLength: 30
   	},
-
+  	username: {
+  		type: 'string',
+  		required: true,
+  		minLength: 3,
+  		maxLength: 30
+  	},
+  	email:{ 
+  		type: 'email',
+  		required: true
+  	},
+  	password:{
+  		type: 'string',
+  		required: true,
+  		minLength: 6,
+  		maxLength: 50
+  	},
   	tokens: {
       collection: 'token',
       via: 'owner'
     }
-
   }
 };
 

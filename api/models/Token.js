@@ -10,14 +10,22 @@ module.exports = {
   attributes: {
 
   	key: {
-  		type: 'string'
+  		type: 'string',
+      required: true
   	},
   	secret: {
-  		type: 'string'
+  		type: 'string',
+      required: true
   	},
-  	owner:{
-  		model:'user'
-  	}
+    active:{
+      type: 'boolean',
+      required: true,
+      defaultsTo: false  
+    },
+    owner:{
+      model:'user',
+      required: true
+    }
   }
 };
 
