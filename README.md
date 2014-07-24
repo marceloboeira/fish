@@ -1,46 +1,96 @@
-[Vimia](https://site.vimia.cc) Query-API [![Build Status](https://travis-ci.org/vimia/query.svg?branch=master)] (https://travis-ci.org/vimia/query) [![Code Climate](https://codeclimate.com/github/vimia/query.png)](https://codeclimate.com/github/vimia/query) [![Test Coverage](https://codeclimate.com/github/vimia/query/coverage.png)](https://codeclimate.com/github/vimia/query)
+[Vimia](https://site.vimia.cc) Sails-Core [![Build Status](https://travis-ci.org/vimia/sails-core.svg?branch=master)] (https://travis-ci.org/vimia/sails-core) [![Code Climate](https://codeclimate.com/github/vimia/sails-core.png)](https://codeclimate.com/github/vimia/sails-core) [![Test Coverage](https://codeclimate.com/github/vimia/sails-core.png)](https://codeclimate.com/github/vimia/sails-core)
 =====
 
+The project consists on a Solid and Realiable [Sails :boat:](http://sails.org) Core to start developing complete apps.
 
 
-The project consist on a Solid, Realiable API to Query Data that is used on several projects, such as:
+## :rocket: Showtime 
 
-* Correios/IBGE - Updated once a year
-	* Search Addressesby 
-		* ZipCode
-		* Street/City name
-
-* Google Maps API
-	* Easy way to integrate Google Maps Search Addresses API
-	* Get Lag/Lng from an Address
-	* Calculate distances and routes
-	* AutoComplete Addresses
-
-* FIPE - Updated once a week
-	* Seach Cars, Bikes, Trucks by:
-		* Brand
-		* Model Name
-		* Year
-		* Estimated Price
-	* Get Cars, Bikes, Trucks infos, such as:
-		* Branc
-		* Model Name
-		* Year
-		* Estimated Price
+We belive that you already installed git, node.js, npm and your favorite database.
 
 
+#### :one: Install Sails*
 
-Get another data input that could be here ? [Open an issue](https://github.com/vimia/query/issues/new/?title=Data%20Input:%20NAME_OF_YOUR_DATA_INPUT)
+:warning: use sails@0.10.0-rc9 
+```bash
+$ sudo npm install sails@0.10.0-rc9 -g
+```
+
+#### :two: Get the project
+
+Let clone it from this repo:
+```bash
+$ git clone https://github.com/vimia/sails-core.git
+```
+Get in the project folder:
+```bash
+$ cd sails-core
+```
+
+#### :three: Adapting the project to deploy 
+
+In the project folder create a file config/local.js:
+```bash
+$ touch config/local.js
+```
+and put this content:
+
+```javascript
+module.exports = {
+  port: process.env.PORT || 5000,
+  environment: process.env.ENV || 'development',
+  connections: {		
+	  	postgresql: {
+		    adapter: 'sails-postgresql',
+ 			url: 'your-database-url'
+	  	}
+  }
+```
+
+#### :four: Launching
+```bash
+$ sails lift
+```
+
+If everything woks fine, you'll be able to see it running at: [http://localhost:5000](http://localhost:5000)
 
 
-### :coffee: From Developers for Developers
+## :metal: Road Map
+
+*~~Heroku Deploy~~
+*~~Find out about relations~~
+	** ~~1:1~~
+	** ~~1:n~~
+	** ~~n:n~~
+* ~~Local Variables~~
+* Test Database Adapters
+	** ~~PostGreSQL~~
+	** MongoDB
+	** MySQL	
+* TDD -> Mocha/Wolfpack* - Still does't not support sails@0.10.x
+* Log 
+* Mailer
+* Services -> CronStyle tasks... 
+* Sessions -> Redis
+* Security (BluePrint Access)
+* Controll access to resources - ACL ? RCL ? 
+* Cache 
+
+
+Get another data input that could be here ? [Open an issue](https://github.com/vimia/sails-core/issues/new/)		
+
+## :coffee: From Developers for Developers
 	
-	The API will be coded to easily integrate several platforms.
+Sails-Core will be coded to easily integrate several platforms.
 
-### :octocat: Contributors
+## :bar_chart: Stats
+
+Coming soon!
+
+## :octocat: Contributors
 	
-	* Marcelo Boeira - Software Engineer & Creator
-	* Marvin Medeiros - Software / UX Engineer & Creator
+* Marcelo Boeira - Software Engineer & Creator
+* Marvin Medeiros - Software / UX Engineer & Creator
 	
 
 
