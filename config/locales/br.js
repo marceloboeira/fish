@@ -1,4 +1,4 @@
 {
-  "welcome": "Welcome",
+  "welcome": "Bem vindo",
   "projectName": "Sails Core"
 }
