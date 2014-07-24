@@ -1,8 +1,8 @@
 {
-  "name": "sails-api",
+  "name": "sails-core",
   "private": true,
   "version": "0.0.0",
-  "description": "Simple Query API",
+  "description": "Sails Core",
   "keywords": [],
   "dependencies": {
     "sails": "~0.10.0-rc9",
@@ -32,7 +32,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:vimia/query.git"
+    "url": "git@github.com:vimia/sails-core.git"
   },
   "author": "marceloboeira",
   "license": "",
