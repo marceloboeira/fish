@@ -1,4 +1,4 @@
-[Vimia](https://site.vimia.cc) Sails-Core [![Build Status](https://travis-ci.org/vimia/sails-core.svg?branch=master)] (https://travis-ci.org/vimia/sails-core) [![Code Climate](https://codeclimate.com/github/vimia/sails-core.png)](https://codeclimate.com/github/vimia/sails-core) [![Test Coverage](https://codeclimate.com/github/vimia/sails-core.png)](https://codeclimate.com/github/vimia/sails-core)
+[Vimia](https://site.vimia.cc)/Sails-Core [![Build Status](https://travis-ci.org/vimia/sails-core.svg?branch=master)] (https://travis-ci.org/vimia/sails-core) [![Code Climate](https://codeclimate.com/github/vimia/sails-core.png)](https://codeclimate.com/github/vimia/sails-core) [![Test Coverage](https://codeclimate.com/github/vimia/sails-core/coverage.png)](https://codeclimate.com/github/vimia/sails-core)
 =====
 
 The project consists on a Solid and Realiable [Sails :boat:](http://sails.org) Core to start developing complete apps.
@@ -9,16 +9,16 @@ The project consists on a Solid and Realiable [Sails :boat:](http://sails.org) C
 We belive that you already installed git, node.js, npm and your favorite database.
 
 
-#### :one: Install Sails*
+#### :one: Installing Sails*
 
 :warning: use sails@0.10.0-rc9 
 ```bash
 $ sudo npm install sails@0.10.0-rc9 -g
 ```
 
-#### :two: Get the project
+#### :two: Cloning the project
 
-Let clone it from this repo:
+Lets clone it from this repo: 
 ```bash
 $ git clone https://github.com/vimia/sails-core.git
 ```
@@ -57,16 +57,16 @@ If everything woks fine, you'll be able to see it running at: [http://localhost:
 
 ## :metal: Road Map
 
-*~~Heroku Deploy~~
-*~~Find out about relations~~
-	** ~~1:1~~
-	** ~~1:n~~
-	** ~~n:n~~
+* ~~Heroku Deploy~~
+* ~~Find out about relations~~
+	* ~~1:1~~
+	* ~~1:n~~
+	* ~~n:n~~
 * ~~Local Variables~~
 * Test Database Adapters
-	** ~~PostGreSQL~~
-	** MongoDB
-	** MySQL	
+	* ~~PostGreSQL~~
+	* MongoDB
+	* MySQL	
 * TDD -> Mocha/Wolfpack* - Still does't not support sails@0.10.x
 * Log 
 * Mailer
@@ -81,7 +81,7 @@ Get another data input that could be here ? [Open an issue](https://github.com/v
 
 ## :coffee: From Developers for Developers
 	
-Sails-Core will be coded to easily integrate several platforms.
+Sails Core will be coded to easily integrate several platforms.
 
 ## :bar_chart: Stats
 
@@ -89,11 +89,4 @@ Coming soon!
 
 ## :octocat: Contributors
 	
-* Marcelo Boeira - Software Engineer & Creator
-* Marvin Medeiros - Software / UX Engineer & Creator
-	
-
-
-
-
-	
+* @marceloboeira - Software Engineer & Creator	
