@@ -13,6 +13,7 @@
 module.exports.i18n = {
 
   // Which locales are supported?
-  locales: ['en', 'es', 'fr', 'de', 'br', 'pt']
+  locales: ['en', 'es', 'fr', 'de', 'br', 'pt'],
+  defaultLocale: 'en'
 
 };
