@@ -58,6 +58,7 @@ If everything woks fine, you'll be able to see it running at: [http://localhost:
 ## :metal: Road Map
 
 * ~~Heroku Deploy~~
+* ~~Newrelic~~
 * ~~Find out about relations~~
 	* ~~1:1~~
 	* ~~1:n~~
