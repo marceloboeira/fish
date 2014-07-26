@@ -71,7 +71,7 @@ If everything woks fine, you'll be able to see it running at: [http://localhost:
 * ~~Local Variables~~
 * Test Database Adapters
 	* ~~PostGreSQL~~
-	* MongoDB
+	* ~~MongoDB~~
 	* MySQL	
 * TDD -> Mocha/Wolfpack* - Still does't not support sails@0.10.x / Already working on it at the TDD branch
 * i18n -> Already working on it at the i18n branch
