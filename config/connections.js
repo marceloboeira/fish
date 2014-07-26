@@ -3,18 +3,18 @@
 module.exports.connections = {
 
   development: {
-    adapter: 'sails-disk'
+    adapter: procces.env.DEV_DB_ADAPTER || 'sails-disk'
   },
 
   test: {
-    adapter: 'sails-postgresql',
-    url: process.env.DATABASE_URL || 'localhost',
+    adapter: procces.env.TEST_DB_ADAPTER || 'sails-mongo',
+    url: process.env.TEST_DB_URL || 'localhost',
     ssl: true
   },
 
   production: {
-    adapter: 'sails-postgresql',
-    url: process.env.DATABASE_URL || 'localhost',
+    adapter: procces.env.PROD_DB_ADAPTER || 'sails-mongo',
+    url: process.env.PROD_DB_URL || 'localhost',
     ssl: true
   }
 };
