@@ -1,5 +1,5 @@
 
 module.exports.models = {
 
-  connection: process.env.ENV || 'development',
+  connection: proccess.env.ENV || 'development',
 };
