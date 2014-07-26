@@ -1,7 +1,7 @@
 [Vimia](https://site.vimia.cc)/Sails-Core [![Build Status](https://travis-ci.org/vimia/sails-core.svg?branch=master)] (https://travis-ci.org/vimia/sails-core) [![Code Climate](https://codeclimate.com/github/vimia/sails-core.png)](https://codeclimate.com/github/vimia/sails-core) [![Test Coverage](https://codeclimate.com/github/vimia/sails-core/coverage.png)](https://codeclimate.com/github/vimia/sails-core)
 =====
 
-The project consists on a Solid and Realiable [Sails :boat:](http://sails.org) Core to start developing complete apps.
+The project consists on a Solid and Realiable [Sails :boat:](http://sailsjs.org) Core to start developing complete apps.
 
 
 ## :rocket: Showtime 
