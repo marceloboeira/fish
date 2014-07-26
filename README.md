@@ -40,12 +40,17 @@ module.exports = {
   port: process.env.PORT || 5000,
   environment: process.env.ENV || 'development',
   connections: {		
-	  	postgresql: {
-		    adapter: 'sails-postgresql',
+	  	development: {
+		    adapter: 'sails-disk', 
+	  	},
+	  	test: {
+		    adapter: 'your-databse-adapter', 
  			url: 'your-database-url'
 	  	}
   }
 ```
+
+The development adapter already is `sails-disk`, if you'll test only with dev, there's no need for change.
 
 #### :four: Launching
 ```bash
