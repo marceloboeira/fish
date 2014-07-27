@@ -41,7 +41,7 @@ module.exports = {
   environment: process.env.ENV || 'development',
   connections: {		
 	  	development: {
-		    adapter: 'sails-disk', 
+		    adapter: 'sails-disk'
 	  	},
 	  	test: {
 		    adapter: 'your-databse-adapter', 
