@@ -44,32 +44,27 @@ module.exports = {
       via: 'owner'
     }
 
-
-
   },
 
   beforeCreate: function (attrs, cb) {
-    
+    hashPassword(attrs, cb);
   },
 
   beforeUpdate: function (attrs, cb) {
-    // Verify if password attr is present, and crypt it
+    hashPassword(attrs, cb);
   },
-
-  setPassword: function (attrs, cb) {
-    if (attrs.password != undefined) {
-      bcrypt.genSalt(10, function(err, salt) {
-        if (err) return cb(err);
-
-        bcrypt.hash(attrs.password, salt, function(err, hash) {
-          if (err) return cb(err);
-
-          attrs.password = hash;
-          cb();
-        });
-      });
-    }
-  }
-
 };
+
+function hashPassword (attrs, cb) {
+  if (attrs.password != undefined) {
+    bcrypt.genSalt(10, function(err, salt) {
+      if (err) return cb(err);
+      bcrypt.hash(attrs.password, salt, function(err, hash) {
+        if (err) return cb(err);
+        attrs.password = hash;
+        cb();
+      });
+    });
+  }
+}    
 
