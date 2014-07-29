@@ -94,6 +94,10 @@ Sails Core will be coded to easily integrate several platforms.
 
 Coming soon!
 
+ ### Who uses ?
+
+ * [blew.io](http://blew.io) - Developers tool to share code.
+
 ## :octocat: Contributors
 	
 * @marceloboeira - Software Engineer & Creator	
