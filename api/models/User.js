@@ -5,6 +5,8 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
+var bcrypt = require('bcrypt');
+
 module.exports = {
   
   attributes: {
@@ -41,6 +43,33 @@ module.exports = {
       collection: 'key',
       via: 'owner'
     }
+
+
+
+  },
+
+  beforeCreate: function (attrs, cb) {
+    
+  },
+
+  beforeUpdate: function (attrs, cb) {
+    // Verify if password attr is present, and crypt it
+  },
+
+  setPassword: function (attrs, cb) {
+    if (attrs.password != undefined) {
+      bcrypt.genSalt(10, function(err, salt) {
+        if (err) return cb(err);
+
+        bcrypt.hash(attrs.password, salt, function(err, hash) {
+          if (err) return cb(err);
+
+          attrs.password = hash;
+          cb();
+        });
+      });
+    }
   }
+
 };
 

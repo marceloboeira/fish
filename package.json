@@ -26,7 +26,8 @@
     "grunt-contrib-cssmin": "~0.9.0",
     "grunt-contrib-less": "0.11.1",
     "grunt-contrib-coffee": "~0.10.1",
-    "newrelic": "~1.9.0"
+    "newrelic": "~1.9.0",
+    "bcrypt": "~0.7.8"
   },
   "scripts": {
     "start": "node app.js",
@@ -39,9 +40,7 @@
   },
   "author": "marceloboeira",
   "license": "",
-  "devDependencies": {
-    
-  },
+  "devDependencies": {},
   "engines": {
     "node": "0.10.28"
   }
