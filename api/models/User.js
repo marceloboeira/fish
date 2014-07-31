@@ -27,13 +27,13 @@ module.exports = {
   		maxLength: 30
   	},
 
-  	email:{ 
+  	email: { 
   		type: 'email',
   		required: true,
       unique: true
   	},
 
-  	password:{
+  	password: {
   		type: 'string',
   		required: true,
   		minLength: 6
@@ -42,6 +42,28 @@ module.exports = {
   	keys: {
       collection: 'key',
       via: 'owner'
+    },
+
+    active: {
+      type: 'boolean',
+      required: true,
+      defaultsTo: true
+
+    },
+
+    ghId: {
+      type: 'string',
+      required: false 
+    },
+
+    ghToken: {
+      type: 'string',
+      required: false 
+    },
+
+    ghSecret: {
+      type: 'string',
+      required: false 
     },
 
     verifyPassword: function (password) {
