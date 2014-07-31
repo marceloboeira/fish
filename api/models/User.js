@@ -66,6 +66,21 @@ module.exports = {
       required: false 
     },
 
+    fbId: {
+      type: 'string',
+      required: false 
+    },
+
+    fbToken: {
+      type: 'string',
+      required: false 
+    },
+
+    fbSecret: {
+      type: 'string',
+      required: false 
+    },
+
     verifyPassword: function (password) {
       return bcrypt.compareSync(password, this.password);
     },

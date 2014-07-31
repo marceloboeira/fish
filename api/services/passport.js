@@ -1,5 +1,6 @@
-var passport = require('passport')
-    , GitHubStrategy = require('passport-github').Strategy;
+var passport = require('passport'), 
+    GitHubStrategy = require('passport-github').Strategy, 
+    FacebookStrategy = require('passport-facebook').Strategy;
 
 
 function findById(id, cb) {
@@ -54,20 +55,51 @@ var verifyHandler = function (token, tokenSecret, profile, cb) {
             });
 
         }
-        else if (profile.provider == 'another') {
-            console.log(9);
+        else if (profile.provider == 'facebook') {
+            findByEmail(profile.emails[0].value, function(err, user){
+                if (err !== null) return cb(err);
+                if (user !== undefined) {
+                    if (user.fbId == profile.id){
+                        cb(err,user);
+                    }
+                    else {
+                        user.fbId = profile.id;    
+                        user.fbToken = token;
+                        user.fbSecret = tokenSecret;
+                        user.save();
+                        cb(err,user);
+                    }
+                }
+                else {
+                    var data = {
+                        name: profile.displayName,
+                        username: profile.id,
+                        email: profile.emails[0].value,
+                        password: profile.id + profile.id,
+                        fbId: profile.id,
+                        fbToken: token,
+                        fbSecret: tokenSecret
+                    };
+                    
+                    User.create(data, function(err, newUser) {
+                        cb(err, newUser);
+                    });
+                }
+            });
+        }
+        else {
+            //TODO: Local Provider ?
         }
     });
 };
 
 passport.serializeUser(function (user, cb) {
-    cb(null, user.toJSON());
+    cb(null, user);
 });
 
 passport.deserializeUser(function (user, cb) {
-    findById(user.id,function(err, user) {
-        cb(err,user.id);
-    });
+    cb(null, user);
 });
 
 passport.use(new GitHubStrategy(sails.config.passport.github, verifyHandler));
+passport.use(new FacebookStrategy(sails.config.passport.facebook, verifyHandler));

@@ -8,6 +8,9 @@
 module.exports = {
 
 	index: function(req, res) {
+
+		console.log("Dashboard");
+		console.log(req.user);
 		res.view();
 	}
 	

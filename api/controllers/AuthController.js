@@ -33,6 +33,21 @@ module.exports = {
                 });
             })(req, res);
     },
-	
+
+    facebook: function (req, res) {
+        passport.authenticate('facebook', { failureRedirect: '/auth/error?provider=facebook', scope: ['email'] },
+            function (err, user) {
+                req.logIn(user, function (err) {
+                    if (err) {
+                        console.log(err);
+                        res.view('500');
+                        return;
+                    }
+
+                    res.redirect('/dashboard/?provider=facebook');
+                    return;
+                });
+            })(req, res);
+    }
 };
 
