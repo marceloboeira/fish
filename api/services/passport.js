@@ -1,4 +1,5 @@
 var passport = require('passport'), 
+    LocalStrategy = require('passport-local').Strategy, 
     GitHubStrategy = require('passport-github').Strategy, 
     FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -20,21 +21,41 @@ function findByEmail(e, cb) {
   });
 }    
 
+var verifyHandlerLocal = function (username, password, cb) {
+    process.nextTick(function () {
+      findByUsername(username, function (err, user) {
+        if (err) return cb(null, err);
+        if (!user) {
+          return cb(null, false, {message: 'Unknown credentials'});
+        }
+        else {
+            if (user.verifyPassword(password)) {
+                return cb(null, user, {message: 'Ok'});
+            }
+            else {
+                return cb(null, null, {message: 'Invalid Password'});
+            } 
+
+        }
+      })
+    });
+}
+
 var verifyHandler = function (token, tokenSecret, profile, cb) {
     process.nextTick(function () {
         if (profile.provider == 'github') {
             findByEmail(profile.emails[0].value, function(err, user){
-                if (err !== null) return cb(err);
-                if (user !== undefined) {
+                if (err) return cb(err);
+                if (!user) {
                     if (user.ghId == profile.id){
-                        cb(err,user);
+                        return cb(err,user);
                     }
                     else {
                         user.ghId = profile.id;    
                         user.ghToken = token;
                         user.ghSecret = tokenSecret;
                         user.save();
-                        cb(err,user);
+                        return cb(err,user);
                     }
                 }
                 else {
@@ -49,7 +70,7 @@ var verifyHandler = function (token, tokenSecret, profile, cb) {
                     };
                     
                     User.create(data, function(err, newUser) {
-                        cb(err, newUser);
+                       return cb(err, newUser);
                     });
                 }
             });
@@ -57,8 +78,8 @@ var verifyHandler = function (token, tokenSecret, profile, cb) {
         }
         else if (profile.provider == 'facebook') {
             findByEmail(profile.emails[0].value, function(err, user){
-                if (err !== null) return cb(err);
-                if (user !== undefined) {
+                if (err) return cb(err);
+                if (!user) {
                     if (user.fbId == profile.id){
                         cb(err,user);
                     }
@@ -67,7 +88,7 @@ var verifyHandler = function (token, tokenSecret, profile, cb) {
                         user.fbToken = token;
                         user.fbSecret = tokenSecret;
                         user.save();
-                        cb(err,user);
+                        return cb(err,user);
                     }
                 }
                 else {
@@ -82,13 +103,10 @@ var verifyHandler = function (token, tokenSecret, profile, cb) {
                     };
                     
                     User.create(data, function(err, newUser) {
-                        cb(err, newUser);
+                        return cb(err, newUser);
                     });
                 }
             });
-        }
-        else {
-            //TODO: Local Provider ?
         }
     });
 };
@@ -103,3 +121,4 @@ passport.deserializeUser(function (user, cb) {
 
 passport.use(new GitHubStrategy(sails.config.passport.github, verifyHandler));
 passport.use(new FacebookStrategy(sails.config.passport.facebook, verifyHandler));
+passport.use(new LocalStrategy(verifyHandlerLocal));

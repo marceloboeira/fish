@@ -18,6 +18,20 @@ module.exports = {
         res.redirect('/');
     },
     
+    local: function(req, res) {
+        
+        passport.authenticate('local', function(err, user, info) {
+          if ((err) || (!user)) {
+            return res.send({message: info.message});
+            res.send(err);
+          }
+          req.logIn(user, function(err) {
+            if (err) res.send(err);
+            res.redirect('/dashboard/?provider=local');
+          });
+        })(req, res);
+    },
+
     github: function (req, res) {
         passport.authenticate('github', { failureRedirect: '/auth/error?provider=github' },
             function (err, user) {
