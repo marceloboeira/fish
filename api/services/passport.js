@@ -1,7 +1,6 @@
 var passport = require('passport'), 
     LocalStrategy = require('passport-local').Strategy, 
-    GitHubStrategy = require('passport-github').Strategy, 
-    FacebookStrategy = require('passport-facebook').Strategy;
+    GitHubStrategy = require('passport-github').Strategy;
 
 
 function findById(id, cb) {
@@ -43,71 +42,32 @@ var verifyHandlerLocal = function (username, password, cb) {
 
 var verifyHandler = function (token, tokenSecret, profile, cb) {
     process.nextTick(function () {
-        if (profile.provider == 'github') {
-            findByEmail(profile.emails[0].value, function(err, user){
-                if (err) return cb(err);
-                if (!user) {
-                    if (user.ghId == profile.id){
-                        return cb(err,user);
-                    }
-                    else {
-                        user.ghId = profile.id;    
-                        user.ghToken = token;
-                        user.ghSecret = tokenSecret;
-                        user.save();
-                        return cb(err,user);
-                    }
-                }
-                else {
-                    var data = {
-                        name: profile.displayName,
-                        username: profile.id,
-                        email: profile.emails[0].value,
-                        password: profile.id + profile.id,
-                        ghId: profile.id,
-                        ghToken: token,
-                        ghSecret: tokenSecret
-                    };
-                    
-                    User.create(data, function(err, newUser) {
-                       return cb(err, newUser);
-                    });
-                }
-            });
+        var provider = profile.provider;
+        if (profile.emails !== undefined 
+            && profile.emails[0] !== undefined
+            && profile.emails[0].value !== undefined) {
 
-        }
-        else if (profile.provider == 'facebook') {
             findByEmail(profile.emails[0].value, function(err, user){
                 if (err) return cb(err);
-                if (!user) {
-                    if (user.fbId == profile.id){
-                        cb(err,user);
-                    }
-                    else {
-                        user.fbId = profile.id;    
-                        user.fbToken = token;
-                        user.fbSecret = tokenSecret;
-                        user.save();
-                        return cb(err,user);
-                    }
+                if (user) {
+                    return cb(err,user);
                 }
                 else {
-                    var data = {
-                        name: profile.displayName,
-                        username: profile.id,
-                        email: profile.emails[0].value,
-                        password: profile.id + profile.id,
-                        fbId: profile.id,
-                        fbToken: token,
-                        fbSecret: tokenSecret
-                    };
-                    
+                    var data = {"name": profile.displayName,
+                                "username": profile.id,
+                                "email": profile.emails[0].value,
+                                "password": profile.id};                    
                     User.create(data, function(err, newUser) {
-                        return cb(err, newUser);
+                        if (err) return cb(err);
+                        return cb(null, newUser);
                     });
                 }
             });
         }
+        else {
+            return cb('No email provided', null);
+        }
+        
     });
 };
 
@@ -120,5 +80,4 @@ passport.deserializeUser(function (user, cb) {
 });
 
 passport.use(new GitHubStrategy(sails.config.passport.github, verifyHandler));
-passport.use(new FacebookStrategy(sails.config.passport.facebook, verifyHandler));
 passport.use(new LocalStrategy(verifyHandlerLocal));

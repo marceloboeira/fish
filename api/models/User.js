@@ -1,84 +1,43 @@
-/**
-* User.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
 
 var bcrypt = require('bcrypt');
-SALT_WORK_FACTOR = 10;
+var uuid = require('node-uuid');
+var SALT_WORK_FACTOR = 10;
 
 module.exports = {
   
   attributes: {
 
-  	name: {
-  		type: 'string',
-  		required: true,
-  		minLength: 3,
-  		maxLength: 30
-  	},
+    name: {
+      type: 'string',
+      required: true,
+      minLength: 3,
+      maxLength: 30
+    },
 
-  	username: {
-  		type: 'string',
-  		required: true,
+    username: {
+      type: 'string',
+      required: true,
       unique: true,
-  		minLength: 3,
-  		maxLength: 30
-  	},
+      minLength: 3,
+      maxLength: 30
+    },
 
-  	email: { 
-  		type: 'email',
-  		required: true,
+    email:{ 
+      type: 'email',
+      required: true,
       unique: true
-  	},
+    },
 
-  	password: {
-  		type: 'string',
-  		required: true,
-  		minLength: 6
-  	},
+    password:{
+      type: 'string',
+      required: true,
+      minLength: 6,
+      maxLength: 50
+    },
 
-  	keys: {
+    keys: {
       collection: 'key',
       via: 'owner'
-    },
-
-    active: {
-      type: 'boolean',
-      required: true,
-      defaultsTo: true
-
-    },
-
-    ghId: {
-      type: 'string',
-      required: false 
-    },
-
-    ghToken: {
-      type: 'string',
-      required: false 
-    },
-
-    ghSecret: {
-      type: 'string',
-      required: false 
-    },
-
-    fbId: {
-      type: 'string',
-      required: false 
-    },
-
-    fbToken: {
-      type: 'string',
-      required: false 
-    },
-
-    fbSecret: {
-      type: 'string',
-      required: false 
     },
 
     verifyPassword: function (password) {
@@ -88,16 +47,20 @@ module.exports = {
     changePassword: function(newPassword, cb){
       this.newPassword = newPassword;
       this.save(function(err, u) {
-        cb(err,u);
+        return cb(err,u);
       });
-    }
+    },
 
+    toJSON: function() {
+      var obj = this.toObject();
+      return obj;
+    }
   },
 
   beforeCreate: function (attrs, cb) {
     bcrypt.hash(attrs.password, SALT_WORK_FACTOR, function (err, hash) {
       attrs.password = hash;
-      cb(err);
+      return cb();    
     });
   },
 
@@ -111,12 +74,12 @@ module.exports = {
 
           delete attrs.newPassword;
           attrs.password = crypted;
-          cb();
+          return cb();
         });
       });
     }
     else {
-      cb();
+      return cb();
     }
   }
 };
