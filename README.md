@@ -62,26 +62,7 @@ If everything woks fine, you'll be able to see it running at: [http://localhost:
 
 ## :metal: Road Map
 
-* ~~Heroku Deploy~~
-* ~~Newrelic~~
-* ~~Find out about relations~~
-	* ~~1:1~~
-	* ~~1:n~~
-	* ~~n:n~~
-* ~~Local Variables~~
-* Test Database Adapters
-	* ~~PostGreSQL~~
-	* ~~MongoDB~~
-	* MySQL	
-* TDD -> Mocha/Wolfpack* - Still does't not support sails@0.10.x / Already working on it at the TDD branch
-* i18n -> Already working on it at the i18n branch
-* Log 
-* Mailer
-* Services -> CronStyle tasks... 
-* Sessions -> Redis
-* Security (BluePrint Access)
-* Controll access to resources - ACL ? RCL ? 
-* Cache 
+* Look at our issues :3
 
 
 Get another data input that could be here ? [Open an issue](https://github.com/vimia/sails-core/issues/new/)		
