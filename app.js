@@ -1,5 +1,5 @@
 require('newrelic');
-// Ensure a "sails" can be located:
+
 var sails;
 try {
 	sails = require('sails');
@@ -8,7 +8,6 @@ try {
 	return;
 }
 
-// Try to get `rc` dependency
 var rc;
 try {
 	rc = require('rc');
@@ -20,5 +19,4 @@ try {
 	}
 }
 
-// Start server
 sails.lift(rc('sails'));
