@@ -4,37 +4,59 @@
  * @description :: Server-side logic for managing auths
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
- 
 var passport = require('passport');
 
 module.exports = {
+  
+  "sign-up": function(req, res) {
+    return res.view();
+  },
+
+  "sign-up-post": function(req, res) {
+
+    //*** 
+
+    return res.redirect('/');
     
-  logout: function (req, res) {
-    req.logout();
-    res.redirect('/?good-bye=true');
+    var data = { name: req.param('name'), 
+                 email: req.param('email'), 
+                 password: req.param('password') };
+    
+    User.signUpHandler(data, function(err, message, user){
+      if (err || !user) {
+        req.flash('danger',message);
+        return res.redirect('/auth/sign-up');
+      }
+      return res.view({ user: user });
+    });
   },
 
   "sign-in": function(req, res) {
-    return res.redirect('/');
+    return res.view();
   },
 
-  "sign-up": function(req, res) {
-    return res.redirect('/');
+  "sign-out": function (req, res) {
+    req.logout();
+    return res.redirect('/?good-bye=true');
   },
     
-  local: function(req, res) {
+  "sign-in-post": function(req, res) {
     passport.authenticate('local', 
-        function(err, user, info) {
-            if ((err) || (!user)) {
-             res.send({message: info.message});
-             return res.send(err);
-
-          }
-          req.logIn(user, function(err) {
-            if (err) res.send(err);
-            res.redirect('/dashboard/?p=local');
-          });
-        })(req, res);
+      function(err, user, info) {
+        if (err) return res.serverError(err);
+        if (!user)
+          return res.json({error: true,
+                           message: info.message});
+        
+        req.logIn(user, function(err) {
+          if (err) return res.serverError(err); 
+          
+          return res.json({error: false,
+                           message: "Ok!",
+                           url: '/dashboard/?p=local'});
+          
+        });
+      })(req, res);
   },
 
   github: function (req, res) {
