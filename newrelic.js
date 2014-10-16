@@ -8,11 +8,11 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name : ['Vimia-Sails-Core'],
+  app_name : [ process.env.NEWRELIC_APP_NAME || 'sails-core'],
   /**
    * Your New Relic license key.
    */
-  license_key : process.env.NEWRELIC_KEY || 'your_app_key',
+  license_key : process.env.NEWRELIC_KEY || 'app_key',
   logging : {
     level : 'trace'
   }
